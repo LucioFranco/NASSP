@@ -109,6 +109,9 @@ XRSound/
 /EphemData.txt
 /PrecessionData.txt
 
+# Build folder (personal Orbiter installation)
+/build/
+
 # Ignore EMS scroll
 /*.bmp
 /.cmake/api/v1
