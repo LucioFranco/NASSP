@@ -1,0 +1,46 @@
+Autosave
+
+Periodically writes the running scenario to disk, so that a mission can be
+picked up again after a crash or a mistake without replaying it from the start.
+
+Settings (Project Apollo Configurator, "Autosave" tab)
+
+  Enable autosave
+    Turns the feature on or off. It is off by default.
+
+  Interval (minutes)
+    How often to save, from 1 to 60 minutes. The default is 10 minutes.
+
+  Show a message when a scenario is saved
+    Displays a short on-screen message naming the scenario each time a save
+    is written.
+
+The settings are stored in the launchpad config file of each vessel class, in
+the same way as the other configurator options, and are read when the vessel is
+created. Changing them takes effect in the next simulation session.
+
+How it works
+
+  - The CSM and the LM each save independently, and only while they have
+    focus. The interval is measured in real time rather than simulated time,
+    and only counts time spent flying that vessel, so switching between the
+    two spacecraft doesn't trigger a save on every change.
+
+  - Scenarios are written to Autosave\<mission> below Orbiter's scenario
+    folder. The mission name comes from the loaded mission file; if there
+    isn't one, the vessel name is used instead.
+
+  - Each save is named after the Ground Elapsed Time, e.g. GET-001.23.45.
+    Before liftoff, when GET is still negative, the name is prefixed with T-,
+    e.g. GET-T-004.00.00 for a save made four hours before launch.
+
+  - Saves accumulate; older ones are never deleted, so any earlier checkpoint
+    can be returned to. Note that the file name only encodes GET, so replaying
+    the same part of a mission overwrites the autosaves made the first time
+    through.
+
+  - If a save fails, the message is not shown and the reason is written to
+    Orbiter.log with an "(Autosave) ERROR" prefix.
+
+To restore a save, open Orbiter's scenario browser, go to the Autosave folder
+and pick the mission and the GET wanted.

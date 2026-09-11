@@ -68,6 +68,7 @@
 #include "inertial.h"
 #include "CueCardManager.h"
 #include "CSMMalfunctionSimulation.h"
+#include "Autosave.h"
 
 #define DIRECTINPUT_VERSION 0x0800
 #include "dinput.h"
@@ -3569,6 +3570,11 @@ protected:
 	boolean StageUnloadState = 0;
 	double LastVPAccelTime = -10000.0, StageUnloadTime = -1.0;
 	double VibrationVisualizationMultiplier = 1.0;
+
+	///
+	/// \brief Periodic scenario autosave.
+	///
+	nassp::Autosave autosave;
 
 	///
 	/// Mesh offset for BPC and LET.

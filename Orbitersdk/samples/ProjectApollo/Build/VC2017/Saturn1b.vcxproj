@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src_aux\animations.cpp" />
+    <ClCompile Include="..\..\src_aux\Autosave.cpp" />
     <ClCompile Include="..\..\src_aux\CueCard.cpp" />
     <ClCompile Include="..\..\src_aux\CueCardLocation.cpp" />
     <ClCompile Include="..\..\src_aux\CueCardManager.cpp" />
@@ -458,6 +459,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src_aux\animations.h" />
+    <ClInclude Include="..\..\src_aux\Autosave.h" />
     <ClInclude Include="..\..\src_aux\CueCard.h" />
     <ClInclude Include="..\..\src_aux\CueCardLocation.h" />
     <ClInclude Include="..\..\src_aux\CueCardManager.h" />

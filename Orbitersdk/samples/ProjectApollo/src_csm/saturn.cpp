@@ -576,6 +576,7 @@ Saturn::Saturn(OBJHANDLE hObj, int fmodel) : ProjectApolloConnectorVessel (hObj,
 
 	cws.MonitorVessel(this);
 	dockingprobe.RegisterVessel(this);
+	autosave.Init(this);
 
 	//Initialize the link to the MFD's debug function.
 	debugString = 0;
@@ -1649,6 +1650,8 @@ void Saturn::clbkPreStep(double simt, double simdt, double mjd)
 	}
 
 	if (cmpeva)UpdateEVA(); //if cmp eva active (vessel created), enables EVA Timestep
+
+	autosave.Timestep(MissionTime, pMission->GetMissionName());
 
 	sprintf(buffer, "End time(0) %lld", time(0)); 
 	TRACE(buffer);
@@ -2900,6 +2903,7 @@ bool Saturn::ProcessConfigFileLine(FILEHANDLE scn, char *line)
 			sscanf(line + 19, "%i", &i);
 			VibrationVisualizationMultiplier = 0.01*(double)i;
 		}
+		else if (autosave.ProcessConfigFileLine(line));
 		else if (papiReadScenario_double(line, "LMDSCFUEL", LMDescentFuelMassKg)); 
 		else if (papiReadScenario_double(line, "LMASCFUEL", LMAscentFuelMassKg));
 		else if (papiReadScenario_double(line, "LMDSCEMPTY", LMDescentEmptyMassKg));

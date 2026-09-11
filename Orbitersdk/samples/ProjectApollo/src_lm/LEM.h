@@ -72,6 +72,7 @@
 #include "payload.h"
 #include "LMMalfunctionSimulation.h"
 #include "CueCardManager.h"
+#include "Autosave.h"
 
 enum LMRCSThrusters
 {
@@ -897,6 +898,11 @@ protected:
 	PanelSwitchesVC MainPanelVC;
 	PanelSwitchScenarioHandler PSH;
 	CueCardManager CueCards;
+
+	///
+	/// \brief Periodic scenario autosave.
+	///
+	nassp::Autosave autosave;
 
 	SwitchRow AbortSwitchesRow;
 

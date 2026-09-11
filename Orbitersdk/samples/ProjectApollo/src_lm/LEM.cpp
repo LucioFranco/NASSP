@@ -469,6 +469,7 @@ LEM::LEM(OBJHANDLE hObj, int fmodel) : Payload (hObj, fmodel),
 	//Mission File
 	InitMissionManagementMemory();
 	pMission = paGetDefaultMission();
+	autosave.Init(this);
 
 	// Switch to compatible dock mode
 	SetDockMode(0);
@@ -1528,6 +1529,8 @@ void LEM::clbkPreStep (double simt, double simdt, double mjd) {
 	}
 
 	if (spaceeva)UpdateSpaceEVA(); //if lmp eva active (vessel created), enables EVA Timestep
+
+	autosave.Timestep(MissionTime, pMission->GetMissionName());
 }
 
 
@@ -2415,6 +2418,7 @@ bool LEM::ProcessConfigFileLine(FILEHANDLE scn, char *line)
 		sscanf(line + 13, "%d", &i);
 		VcInfoEnabled = (i != 0);
 	}
+	else if (autosave.ProcessConfigFileLine(line));
 	return true;
 }
 
